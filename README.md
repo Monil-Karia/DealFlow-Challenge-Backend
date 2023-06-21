@@ -37,21 +37,32 @@ The API supports pagination using query parameters such as `page` and limit and 
 
 ### API Endpoints
 
-- `/api/v1/freelancers/`
-    - `GET`: Retrieves all freelancers or performs searches by query parameters.
-    - Query Parameters:
-        - `first_name`: Filters freelancers by first name.
-        - `last_name`: Filters freelancers by last name.
-        - `email`: Filters freelancers by email.
-        - `phone_number`: Filters freelancers by phone number.
-        - `followers`: Filters freelancers by followers.
-        - `page`: Controls the page number for pagination.
-- `/api/v1/freelancers/{id}/`
-    - `GET`: Retrieves a specific freelancer by ID.
-- `/api/v1/brands/`
-    - `GET`: Retrieves all brands.
-- `/api/v1/brands/{id}/`
-    - `GET`: Retrieves a specific brand by ID.
+1. **Fetch All Available Freelancers**
+   - Endpoint: `GET /api/v1/freelancers/`
+   - Description: Retrieves a list of all available freelancers on Dealflow.
+   - Parameters: None
+   - Response: List of freelancer objects with details such as `freelancer_id`, `first_name`, `last_name`, `email`, `phone_number`, `brand`, `followers`, `added_data`, and `social_media`.
+
+2. **Search Freelancers**
+   - Endpoint: `GET /api/v1/freelancers/?first_name=<first_name>&last_name=<last_name>&email=<email>&phone_number=<phone_number>&followers=<followers>`
+   - Description: Searches for freelancers based on the provided parameters. You can search by `first_name`, `last_name`, `email`, `phone_number`, and/or `followers`.
+   - Parameters:
+     - `first_name` (optional): Filters freelancers by first name.
+     - `last_name` (optional): Filters freelancers by last name.
+     - `email` (optional): Filters freelancers by email.
+     - `phone_number` (optional): Filters freelancers by phone number.
+     - `followers` (optional): Filters freelancers by number of followers on a social media platform.
+   - Response: List of freelancer objects that match the search criteria.
+
+3. **Pagination**
+   - Endpoint: `GET /api/v1/freelancers/?page=<page_number>&page_size=<page_size>`
+   - Description: Retrieves a paginated list of freelancers. Supports pagination to navigate through the results.
+   - Parameters:
+     - `page` (optional): Specifies the page number to retrieve (default: 1).
+     - `page_size` (optional): Specifies the number of freelancers per page (default: 10).
+   - Response: Paginated list of freelancer objects.
+
+Please note that these endpoints assume the base URL is `http://localhost:8000/` (adjust accordingly based on your deployment configuration). Also, ensure that you have properly configured your Django project and installed the required packages before using the API.
 
 ## Contributing
 
