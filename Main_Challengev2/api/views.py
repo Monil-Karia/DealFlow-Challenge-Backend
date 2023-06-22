@@ -4,11 +4,14 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from api.models import Freelancers, Brand
 from api.serializers import FreelancersSerializer, BrandSerializer
+from rest_framework.pagination import PageNumberPagination
 
 # ViewSet for Freelancers model
 class FreelancerViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Freelancers.objects.all()  # Set the queryset to all Freelancers objects
     serializer_class = FreelancersSerializer  # Use the FreelancersSerializer for serialization
+
+    pagination_class = PageNumberPagination
 
     def get_queryset(self):
         queryset = super().get_queryset()  # Get the base queryset
